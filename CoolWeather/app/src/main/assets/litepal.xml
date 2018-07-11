@@ -1,0 +1,8 @@
+<litepal>
+    <dbname class="cool_weather"/>
+    <list>
+        <mapping class="com.coolweather.android.db.Province"/>
+        <mapping class="com.coolweather.android.db.City"/>
+        <mapping class="com.coolweather.android.db.County"/>
+    </list>
+</litepal>
