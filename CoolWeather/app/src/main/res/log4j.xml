@@ -1,0 +1,38 @@
+<resources >
+    <configuration>
+
+        <!-- 引用自定义的CustomDailyRollingFileAppender日志类-->
+
+        <appender name="FILE" class="com.demo.filter.CustomDailyRollingFileAppender">
+
+            <!-- 自定义日志输出路径和名称 -->
+
+            <param name="file" value="D:/logs/test-agent.log" />
+
+            <!-- 自定义历史日志文件后缀名 -->
+
+            <param name="datePattern" value="'.'yyyy-MM-dd" />
+
+            <!-- 自定义日志文件总数量，大于这个数量，自动删除 -->
+
+            <param name="maxBackupIndex" value="3" />
+
+            <param name="append" value="true" />
+
+            <layout class="org.apache.log4j.PatternLayout">
+
+                <param name="ConversionPattern" value="%d [%t] %p - %m%n" />
+
+            </layout>
+
+        </appender>
+
+        <root>
+
+            <priority value="info" />
+
+            <appender-ref ref="FILE" />
+
+        </root>
+    </configuration>
+</resources>
