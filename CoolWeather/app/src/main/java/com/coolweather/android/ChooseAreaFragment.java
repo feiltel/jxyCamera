@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.coolweather.android.db.City;
 import com.coolweather.android.db.County;
 import com.coolweather.android.db.Province;
+import com.coolweather.android.log.CoolWeatherLogger;
 import com.coolweather.android.util.HttpUtil;
 import com.coolweather.android.util.Utility;
 
@@ -114,6 +115,9 @@ public class ChooseAreaFragment extends Fragment {
             String address = "http://guolin.tech/api/china";
             queryFromServer(address, "province");
             Log.i("jinjin", "queryProvinces: "+address);
+            CoolWeatherLogger.getCoolWeatherLogger().info("queryProvinces: "+address);
+            CoolWeatherLogger.getCoolWeatherLogger().debug("queryProvinces: "+address);
+            CoolWeatherLogger.getCoolWeatherLogger().error("queryProvinces: "+address);
         }
     }
 
