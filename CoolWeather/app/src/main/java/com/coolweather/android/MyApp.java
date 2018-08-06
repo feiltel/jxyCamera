@@ -3,6 +3,7 @@ package com.coolweather.android;
 import android.app.Application;
 import android.os.Environment;
 
+import com.coolweather.android.log.ConfigureLog4J;
 import com.coolweather.android.log.CoolWeatherLogger;
 import com.coolweather.android.log.HelpAppender;
 import com.coolweather.android.log.MyLogger;
@@ -15,10 +16,6 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-      /*  CoolWeatherLogger.getCoolWeatherLogger().setPath(Environment.getExternalStorageDirectory().getPath());
-        HelpAppender.setLogLevel(true);*/
-
-        MyLogger.getCoolWeatherLogger().init();
-        HelpAppender.setLogLevel(true);
+        ConfigureLog4J.configure(true,ConfigureLog4J.COMMON_PATH);
     }
 }

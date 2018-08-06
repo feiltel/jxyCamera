@@ -13,25 +13,27 @@ public class ConfigureLog4J {
     //日志级别优先度从高到低:OFF(关闭),FATAL(致命),ERROR(错误),WARN(警告),INFO(信息),DEBUG(调试),ALL(打开所有的日志，我的理解与DEBUG级别好像没有什么区别得)
 //Log4j建议只使用FATAL ,ERROR ,WARN ,INFO ,DEBUG这五个级别。
     // "yyyy-MM-dd");// 日志的输出格式
+    private static String rootPath = Environment.getExternalStorageDirectory().getPath();
+    public static final String COMMON_PATH= rootPath + "/" + "log/common/info.log";
+    public static final String SURVEY_PATH= rootPath + "/" + "log/survey/info.log";
 
-    public static void configure() {
+    public static void configure(boolean isdebug,String filePath) {
         final LogConfigurator logConfigurator = new LogConfigurator();
         Date nowtime = new Date();
         // String needWriteMessage = myLogSdf.format(nowtime);
         //日志文件路径地址:SD卡下myc文件夹log文件夹的test文件
-        String fileName = Environment.getExternalStorageDirectory()
-                + File.separator + "myc" + File.separator + "log"
-                + File.separator + "test.log";
+
         //设置文件名
-        logConfigurator.setFileName(fileName);
+        logConfigurator.setFileName(filePath);
         //设置root日志输出级别 默认为DEBUG
-        logConfigurator.setRootLevel(Level.DEBUG);
+
+        logConfigurator.setRootLevel(isdebug?Level.DEBUG:Level.INFO);
         // 设置日志输出级别
         logConfigurator.setLevel("org.apache", Level.INFO);
         //设置 输出到日志文件的文字格式 默认 %d %-5p [%c{2}]-[%L] %m%n
-        logConfigurator.setFilePattern("%d %-5p [%c{2}]-[%L] %m%n");
+        logConfigurator.setFilePattern("[%d] [%l] [%p] : %m%n");
         //设置输出到控制台的文字格式 默认%m%n
-        logConfigurator.setLogCatPattern("%d %l [%p] : %m");
+        logConfigurator.setLogCatPattern("[%d] [%l] [%p] : %m%n");
         //设置总文件大小
         logConfigurator.setMaxFileSize(1024 * 1024 * 5);
         //设置最大产生的文件个数

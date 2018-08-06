@@ -54,7 +54,7 @@ public class HelpAppender extends AppenderSkeleton {
         logger.removeAllAppenders();
         logger.addAppender(consoleAppender);
         logger.addAppender(fileAppender);
-        logger.info(string);
+      //  logger.info(string);
 
     }
 
