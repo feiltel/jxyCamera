@@ -35,7 +35,7 @@ public class ConfigureLog4J {
         //设置总文件大小
         logConfigurator.setMaxFileSize(1024 * 1024 * 5);
         //设置最大产生的文件个数
-        logConfigurator.setMaxBackupSize(1);
+        logConfigurator.setMaxBackupSize(7);
         //设置所有消息是否被立刻输出 默认为true,false 不输出
         logConfigurator.setImmediateFlush(true);
         //是否本地控制台打印输出 默认为true ，false不输出

@@ -73,7 +73,6 @@ public class CoolWeatherLogger extends Logger {
         if (message instanceof Throwable) {
             newMsg = ((Throwable) message).getMessage();
         }
-
         return String.format(PATTERN, module, feature, className, newMsg);
     }
 
