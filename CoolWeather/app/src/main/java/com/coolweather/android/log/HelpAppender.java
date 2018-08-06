@@ -2,6 +2,7 @@ package com.coolweather.android.log;
 
 import org.apache.log4j.AppenderSkeleton;
 import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.DailyRollingFileAppender;
 import org.apache.log4j.FileAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
@@ -18,7 +19,7 @@ import java.io.IOException;
 
 public class HelpAppender extends AppenderSkeleton {
     private  String filePath;
-    private CustomDailyRollingFileAppender fileAppender;
+    private DailyRollingFileAppender fileAppender;
     private Logger logger=Logger.getLogger(HelpAppender.class);
     private String datePattern="'.'yyyy-MM-d";
     private ConsoleAppender consoleAppender;
@@ -37,7 +38,7 @@ public class HelpAppender extends AppenderSkeleton {
             return;
         }
         try {
-            fileAppender=new CustomDailyRollingFileAppender(layout,filePath,datePattern);
+            fileAppender=new DailyRollingFileAppender(layout,filePath,datePattern);
             consoleAppender=new ConsoleAppender(layout);
             if (loggingEvent.getLevel()== Level.ERROR){
                 consoleAppender.setTarget(ConsoleAppender.SYSTEM_ERR);
