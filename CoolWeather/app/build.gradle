@@ -16,7 +16,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets{
+        main(){
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
+
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -27,4 +33,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.7'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     implementation files('libs/log4j-1.2.17.jar')
+    implementation files('libs/android-logging-log4j-1.0.3.jar')
 }
