@@ -103,6 +103,7 @@ public class CustomDailyRollingFileAppender extends FileAppender {
      * become the ouput destination for thisappender.
      */
 
+
     public CustomDailyRollingFileAppender(Layout layout, String filename,
 
                                           String datePattern) throws IOException {

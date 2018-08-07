@@ -20,8 +20,10 @@ public class MyLogger {
     private static String infoLog = rootPath + "/" + "log/common/info.log";
     public static synchronized Logger getLogger(Class myClass) {
         logger = Logger.getLogger(myClass);
+        logger.setAdditivity(true);
         logger.removeAllAppenders();
         logger.addAppender(new HelpAppender(infoLog));
+
         return logger;
     }
 
