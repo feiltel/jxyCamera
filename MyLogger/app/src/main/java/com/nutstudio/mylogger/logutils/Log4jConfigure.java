@@ -11,8 +11,9 @@ import java.io.File;
 
 
 public class Log4jConfigure {
-    public static final String My_LOG_DIR = "//MyApp//MyLog//info.log";
-    public static final String DEFAULT_LOG_DIR = "//MyApp//DEFAULT//info.log";
+    public static String NOW_PATH="log/common/info.log";
+    public static final String SURVEY_PATH = "log/survey/info.log";
+    public static final String COMMON_PATH = "log/common/info.log";
     private static final String TAG = "Log4jConfigure";
     // 对应AndroidManifest文件中的package
     public static void configure(boolean isDebug, String filePath) {
@@ -35,7 +36,10 @@ public class Log4jConfigure {
             //以下为通用配置
             logConfigurator.setImmediateFlush(true);
             logConfigurator.setRootLevel(isDebug ? Level.DEBUG : Level.INFO);
-            logConfigurator.setFilePattern("%d\t%p/%c:\t%m%n");
+            logConfigurator.setFilePattern("[%d] [%l] [%p] : %m%n");
+            //设置输出到控制台的文字格式 默认%m%n
+            logConfigurator.setLogCatPattern("[%d] [%l] [%p] : %m%n");
+
             logConfigurator.configure();
             android.util.Log.e(TAG, "Log4j config finish");
         } catch (Throwable throwable) {
@@ -45,7 +49,7 @@ public class Log4jConfigure {
     }
 
     public static void configure() {
-        configure(false, DEFAULT_LOG_DIR);
+        configure(false, COMMON_PATH);
     }
 
     private static boolean isSdcardMounted() {

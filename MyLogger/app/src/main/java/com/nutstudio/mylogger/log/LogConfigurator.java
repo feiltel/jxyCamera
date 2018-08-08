@@ -18,8 +18,7 @@ package com.nutstudio.mylogger.log;
 
 import com.nutstudio.mylogger.logutils.CustomDailyRollingFileAppender;
 
-import java.io.IOException;
-
+import org.apache.log4j.DailyRollingFileAppender;
 import org.apache.log4j.Layout;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
@@ -28,12 +27,15 @@ import org.apache.log4j.PatternLayout;
 import org.apache.log4j.RollingFileAppender;
 import org.apache.log4j.helpers.LogLog;
 
+import java.io.IOException;
+
 /**
  * Configures the Log4j logging framework. See <a href=
  * "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/PatternLayout.html"
  * >Patterns</a> for pattern layout.
- * 
- * Add by King.zi 
+ * <p>
+ * Add by King.zi
+ *
  * @author Rolf Kulemann
  */
 public class LogConfigurator {
@@ -62,7 +64,7 @@ public class LogConfigurator {
     }
 
     /**
-     * @param fileName Name of the log file
+     * @param fileName  Name of the log file
      * @param rootLevel Log level for the root logger
      */
     public LogConfigurator(final String fileName, final Level rootLevel) {
@@ -71,8 +73,8 @@ public class LogConfigurator {
     }
 
     /**
-     * @param fileName Name of the log file
-     * @param rootLevel Log level for the root logger
+     * @param fileName    Name of the log file
+     * @param rootLevel   Log level for the root logger
      * @param filePattern Log pattern for the file appender
      */
     public LogConfigurator(final String fileName, final Level rootLevel, final String filePattern) {
@@ -82,14 +84,14 @@ public class LogConfigurator {
     }
 
     /**
-     * @param fileName Name of the log file
+     * @param fileName      Name of the log file
      * @param maxBackupSize Maximum number of backed up log files
-     * @param maxFileSize Maximum size of log file until rolling
-     * @param filePattern Log pattern for the file appender
-     * @param rootLevel Log level for the root logger
+     * @param maxFileSize   Maximum size of log file until rolling
+     * @param filePattern   Log pattern for the file appender
+     * @param rootLevel     Log level for the root logger
      */
     public LogConfigurator(final String fileName, final int maxBackupSize, final long maxFileSize,
-            final String filePattern, final Level rootLevel) {
+                           final String filePattern, final Level rootLevel) {
         this(fileName, rootLevel, filePattern);
         setMaxBackupSize(maxBackupSize);
         setMaxFileSize(maxFileSize);
@@ -118,7 +120,7 @@ public class LogConfigurator {
     /**
      * Sets the level of logger with name <code>loggerName</code>. Corresponds
      * to log4j.properties <code>log4j.logger.org.apache.what.ever=ERROR</code>
-     * 
+     *
      * @param loggerName
      * @param level
      */
@@ -162,11 +164,10 @@ public class LogConfigurator {
         final Logger root = Logger.getRootLogger();
         final CustomDailyRollingFileAppender rollingFileAppender;
         final Layout fileLayout = new PatternLayout(getFilePattern());
-
         try {
             rollingFileAppender = new CustomDailyRollingFileAppender(fileLayout, getFileName(),
                     datePattern);
-            rollingFileAppender.activateOptions();
+            // rollingFileAppender.activateOptions();
         } catch (final IOException e) {
             throw new RuntimeException("Exception configuring log system", e);
         }
@@ -179,13 +180,12 @@ public class LogConfigurator {
         final Logger root = Logger.getRootLogger();
         final Layout logCatLayout = new PatternLayout(getLogCatPattern());
         final LogCatAppender logCatAppender = new LogCatAppender(logCatLayout);
-
         root.addAppender(logCatAppender);
     }
 
     /**
      * Return the log level of the root logger
-     * 
+     *
      * @return Log level of the root logger
      */
     public Level getRootLevel() {
@@ -194,7 +194,7 @@ public class LogConfigurator {
 
     /**
      * Sets log level for the root logger
-     * 
+     *
      * @param level Log level for the root logger
      */
     public void setRootLevel(final Level level) {
@@ -219,7 +219,7 @@ public class LogConfigurator {
 
     /**
      * Returns the name of the log file
-     * 
+     *
      * @return the name of the log file
      */
     public String getFileName() {
@@ -228,7 +228,7 @@ public class LogConfigurator {
 
     /**
      * Sets the name of the log file
-     * 
+     *
      * @param fileName Name of the log file
      */
     public void setFileName(final String fileName) {
@@ -237,7 +237,7 @@ public class LogConfigurator {
 
     /**
      * Returns the maximum number of backed up log files
-     * 
+     *
      * @return Maximum number of backed up log files
      */
     public int getMaxBackupSize() {
@@ -246,7 +246,7 @@ public class LogConfigurator {
 
     /**
      * Sets the maximum number of backed up log files
-     * 
+     *
      * @param maxBackupSize Maximum number of backed up log files
      */
     public void setMaxBackupSize(final int maxBackupSize) {
@@ -255,7 +255,7 @@ public class LogConfigurator {
 
     /**
      * Returns the maximum size of log file until rolling
-     * 
+     *
      * @return Maximum size of log file until rolling
      */
     public long getMaxFileSize() {
@@ -264,7 +264,7 @@ public class LogConfigurator {
 
     /**
      * Sets the maximum size of log file until rolling
-     * 
+     *
      * @param maxFileSize Maximum size of log file until rolling
      */
     public void setMaxFileSize(final long maxFileSize) {
@@ -281,7 +281,7 @@ public class LogConfigurator {
 
     /**
      * Returns true, if FileAppender is used for logging
-     * 
+     *
      * @return True, if FileAppender is used for logging
      */
     public boolean isUseFileAppender() {
@@ -297,7 +297,7 @@ public class LogConfigurator {
 
     /**
      * Returns true, if LogcatAppender should be used
-     * 
+     *
      * @return True, if LogcatAppender should be used
      */
     public boolean isUseLogCatAppender() {
@@ -306,7 +306,7 @@ public class LogConfigurator {
 
     /**
      * If set to true, LogCatAppender will be used for logging
-     * 
+     *
      * @param useLogCatAppender If true, LogCatAppender will be used for logging
      */
     public void setUseLogCatAppender(final boolean useLogCatAppender) {
@@ -320,9 +320,9 @@ public class LogConfigurator {
     /**
      * Resets the log4j configuration before applying this configuration.
      * Default is true.
-     * 
+     *
      * @return True, if the log4j configuration should be reset before applying
-     *         this configuration.
+     * this configuration.
      */
     public boolean isResetConfiguration() {
         return resetConfiguration;

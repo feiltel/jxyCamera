@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.text).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log4jConfigure.configure(true, Log4jConfigure.My_LOG_DIR);
+                Log4jConfigure.NOW_PATH=Log4jConfigure.SURVEY_PATH;
                 Log.getLogger(MainActivity.class).debug("MainActivity1");
                 Log.getLogger(MainActivity.class).error("MainActivity1");
                 Log.getLogger(MainActivity.class).info("MainActivity1");
